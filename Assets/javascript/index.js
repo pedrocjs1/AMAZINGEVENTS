@@ -4,7 +4,7 @@ const $containerCategorySelect = document.getElementById("index-category-select"
 const $fragmentCategory = document.createDocumentFragment()
 let searchInput = document.getElementById("search-input")
 
-let arraySelect = Array.from(categoriesOnlySelect)
+
 
 const categories = datos.map(category => category.category)
 let categoriesOnly = new Set(datos.map(category => category.category))
@@ -12,18 +12,7 @@ let categoriesOnlySelect = new Set(datos.map(category => category.category))
 let eventCard = datos.map(event => event) 
 
 
-// let data;
-// let info;
 
-// fetch('https://amazing-events.herokuapp.com/api/events')
-// .then((response) => response.json())
-// .then((json) => {
-//     info = json;
-//     datos = info.events
-//         console.log(data)
-//         console.log(info)
-// })
-//     .catch()
 
 //|||||FUNCTIONS CARDS|||||//
 
