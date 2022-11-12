@@ -17,7 +17,9 @@ console.log(categoriesOnlySelect)
 
 //|||||FUNCTIONS CARDS|||||//
 
-//CAMBIOSSSSSSSSSSSSSSSSSSSSS
+function puebra(){
+    return 2
+}
 
 
 function createCards(event) {
