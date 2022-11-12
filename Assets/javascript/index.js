@@ -2,30 +2,23 @@ let containerCard = document.getElementById("index-card")
 const $containerCategory = document.getElementById("index-category")
 const $containerCategorySelect = document.getElementById("index-category-select")
 const $fragmentCategory = document.createDocumentFragment()
-let searchInput = document.getElementById("search-input")
-
-let arraySelect = Array.from(categoriesOnlySelect)
-
 const categories = datos.map(category => category.category)
 let categoriesOnly = new Set(datos.map(category => category.category))
 let categoriesOnlySelect = new Set(datos.map(category => category.category))
 let eventCard = datos.map(event => event) 
+let searchInput = document.getElementById("search-input")
 
 
-// let data;
-// let info;
+let arraySelect = Array.from(categoriesOnlySelect)
+console.log(arraySelect)
 
-// fetch('https://amazing-events.herokuapp.com/api/events')
-// .then((response) => response.json())
-// .then((json) => {
-//     info = json;
-//     datos = info.events
-//         console.log(data)
-//         console.log(info)
-// })
-//     .catch()
+console.log(categoriesOnlySelect)
+
 
 //|||||FUNCTIONS CARDS|||||//
+
+//CAMBIOSSSSSSSSSSSSSSSSSSSSS
+
 
 function createCards(event) {
         let card = document.createElement("div")
@@ -48,8 +41,10 @@ function createCards(event) {
                 </div>
             </div>
         `
-        return card    
+        return card
+       
 }
+
 function printCard(events, container) {
     container.innerHTML = ''
     let $fragment = document.createDocumentFragment()
@@ -58,9 +53,11 @@ function printCard(events, container) {
     container.appendChild($fragment)
 
 }
+
 printCard(datos, containerCard)
 
 //|||||FUNCTIONS CATEGORIES DESKTOP|||||//
+
 
 function printCategory(category, where) {
     let template = ''
@@ -81,6 +78,8 @@ printCategory(categoriesOnly, $containerCategory)
 
 let filterEventsGlobal = []
 
+
+
 $containerCategory.addEventListener("change", (event) => {
     let checked =Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(valor => valor.value)
     let filterEvents = filterCards(eventCard, checked)
@@ -90,10 +89,16 @@ $containerCategory.addEventListener("change", (event) => {
     filterEventsGlobal = filterEvents.map(e => e)
 })
 
+
+
+
+
+
 function filterCards(events, condition) {
     let filter = events.filter(event => condition.includes(event.category))
     return filter
 }
+
 
 //|||||FUNCTIONS SEARCH|||||//
 
@@ -105,6 +110,9 @@ function filterText(array, text){
     }
 }
 
+
+
+
 searchInput.addEventListener("keyup", e => {
     const valorInput = Array.from(document.querySelectorAll('input[type="search"]')).map(element => element.value)
     const cadenaInput = valorInput.toString().toLowerCase()
@@ -114,9 +122,14 @@ searchInput.addEventListener("keyup", e => {
 })
 
 function filterSearch(events, valorInput) {
+    console.log(events)
     let filter = events.filter(e => e.name.toLowerCase().includes(valorInput)) 
+    console.log(filter)
     return filter
 }
+
+
+
 
 function printCategorySlct(category, where) {
     let template = `
@@ -128,8 +141,10 @@ function printCategorySlct(category, where) {
         `
     })
     where.innerHTML = template
+
 }
 printCategorySlct(categoriesOnlySelect, $containerCategorySelect)
+
 
 $containerCategorySelect.addEventListener("change", e => {
     let select = Array.from(document.querySelectorAll('option')).filter(elemento => elemento.selected).map(element => element.textContent)
@@ -144,6 +159,7 @@ function filterCategoriesSelect(category, condition){
     const filter = category.filter(categories => condition.includes(categories.category))
     return filter
 }
+
 
 function valorEventGlobal(){
     if (filterEventsGlobal.length === 0) {
