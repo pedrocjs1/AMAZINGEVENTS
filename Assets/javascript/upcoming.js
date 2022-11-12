@@ -2,8 +2,52 @@ let $upcomingCard = document.getElementById("upcomming-card")
 let $containerCategory = document.getElementById("category-container")
 let $containerCategorySelect = document.getElementById("index-category-select")
 let $searchUpComing = document.getElementById("search-up-coming")
-let events = datos.map(event => event)
-let categoriesOnly = new Set(datos.map(category => category.category))
+
+
+
+
+fetch('https://amazing-events.herokuapp.com/api/events')
+.then((response) => response.json())
+.then((json) => {
+    let info = json
+    let datos = info.events
+    let events = datos.map(event => event)
+    let categoriesOnly = new Set(datos.map(category => category.category))
+
+    printCard(datos, $upcomingCard)
+    createCategory(categoriesOnly, $containerCategory )
+    printCategorySlct(categoriesOnly, $containerCategorySelect)
+    $containerCategory.addEventListener("change", (event => {
+        let checked =Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(valor => valor.value)
+        let filterEvents = filterCards(events, checked)
+        filterEvents.length !== 0
+        ?   printCard(filterEvents, $upcomingCard)
+        :   $upcomingCard.innerHTML = `<h2>Select a category</h2>` 
+        filterEventsGlobal = filterEvents.map(e => e)
+    }))
+    $searchUpComing.addEventListener("keyup", e => {
+        const valorInput = Array.from(document.querySelectorAll('input[type="search"]')).map(element => element.value)
+        const cadenaInput = valorInput.toString().toLowerCase()
+        filterEventsGlobal = valorEventGlobal()
+        const cardsFilter = filterSearch(filterEventsGlobal, cadenaInput)
+        printCard(cardsFilter, $upcomingCard)  
+    })
+    $containerCategorySelect.addEventListener("change", e => {
+        let select = Array.from(document.querySelectorAll('option')).filter(elemento => elemento.selected).map(element => element.textContent)
+        let filterCategory = filterCategoriesSelect(events, select)
+        select.includes("Select Category")
+        ? printCard(events, $upcomingCard)
+        : printCard(filterCategory, $upcomingCard)
+        
+    })
+    function valorEventGlobal(){
+        if (filterEventsGlobal.length === 0) {
+            return datos
+        }
+        return filterEventsGlobal
+    }
+})
+.catch(problems => containerCard.innerHTML = `<h1>We are having technical problems, try again later. 🛠</h1>`)
 
 function createCards(event){
     let card = document.createElement("div")
@@ -26,11 +70,7 @@ function createCards(event){
                 </div>
         </div>
     `
-    return card
-    // if (event.date >= "2022-01-01") {
-    //     fragmentUpcoming.appendChild(card)
-    // }
-    
+    return card   
 }
 
 function printCard(events, container){
@@ -42,9 +82,6 @@ function printCard(events, container){
     container.appendChild($fragmentUpEvents)
 
 }
-
-printCard(datos, $upcomingCard)
-
 
 function createCategory(category, container){
     let template = '' 
@@ -61,27 +98,12 @@ function createCategory(category, container){
     container.innerHTML = template
 }
 
-createCategory(categoriesOnly, $containerCategory )
-
-
 let filterEventsGlobal = []
-
-$containerCategory.addEventListener("change", (event => {
-    let checked =Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(valor => valor.value)
-    let filterEvents = filterCards(events, checked)
-    filterEvents.length !== 0
-    ?   printCard(filterEvents, $upcomingCard)
-    :   $upcomingCard.innerHTML = `<h2>Select a category</h2>` 
-    filterEventsGlobal = filterEvents.map(e => e)
-}))
-
-
 
 function filterCards(events, condition) {
     let filter = events.filter(event => condition.includes(event.category))
     return filter
 }
-
 
 function filterText(array, text){
     if (text === "") {
@@ -91,25 +113,10 @@ function filterText(array, text){
     }
 }
 
-
-
-
-
-$searchUpComing.addEventListener("keyup", e => {
-    const valorInput = Array.from(document.querySelectorAll('input[type="search"]')).map(element => element.value)
-    const cadenaInput = valorInput.toString().toLowerCase()
-    filterEventsGlobal = valorEventGlobal()
-    const cardsFilter = filterSearch(filterEventsGlobal, cadenaInput)
-    printCard(cardsFilter, $upcomingCard)  
-})
-
 function filterSearch(events, valorInput) {
     let filter = events.filter(e => e.name.toLowerCase().includes(valorInput)) 
     return filter
 }
-
-
-
 
 function printCategorySlct(category, where) {
     let template = `
@@ -123,28 +130,7 @@ function printCategorySlct(category, where) {
     where.innerHTML = template
 }
 
-printCategorySlct(categoriesOnly, $containerCategorySelect)
-
-
-$containerCategorySelect.addEventListener("change", e => {
-    let select = Array.from(document.querySelectorAll('option')).filter(elemento => elemento.selected).map(element => element.textContent)
-    let filterCategory = filterCategoriesSelect(events, select)
-    select.includes("Select Category")
-    ? printCard(events, $upcomingCard)
-    : printCard(filterCategory, $upcomingCard)
-    
-})
-
-
 function filterCategoriesSelect(category, condition){
     const filter = category.filter(categories => condition.includes(categories.category))
     return filter
-}
-
-
-function valorEventGlobal(){
-    if (filterEventsGlobal.length === 0) {
-        return datos
-    }
-    return filterEventsGlobal
 }
