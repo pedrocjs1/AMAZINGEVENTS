@@ -1,51 +1,53 @@
 const eventStatistics = document.getElementById("events-statistics")
 const upcomingStatistics = document.getElementById("upcoming-statistics")
+const pastStatistics = document.getElementById("past-statistics")
+const headerError = document.getElementById("header-error")
+let newArrayComing = []
+let newArrayPast = []
+
 
 fetch('https://amazing-events.herokuapp.com/api/events')
 .then((response) => response.json())
 .then((json) => {
     let info = json
     let datos = info.events
-    let categoriesOnly = new Set(datos.map(category => category.category))
-    // let categoriesOnlyS = new Set(datos.map(category => category))
     let eventsEstiamteOnly = datos.filter(events => events.estimate)
-    let eventsEstiamteCategory = new Set(eventsEstiamteOnly.map(event => event.category)) 
-    printStatistics(datos, eventStatistics)
-    console.log(datos)
-    console.log(eventsEstiamteOnly)
-    printUpcomingStatistics(eventsEstiamteCategory, upcomingStatistics)
-
-    console.log(revenuesEstimate(eventsEstiamteOnly))
-
-    // console.log(revenuesEstimateee(eventsEstiamteOnly))
-    console.log(revenues(eventsEstiamteOnly, "cinema"))
+    let eventsEstiamteCategory = [... new Set(eventsEstiamteOnly.map(event => event.category))] 
     
+    let eventsAssistanceOnly = datos.filter(events => events.assistance)
+    let eventsAssistanceCategory = [... new Set(eventsAssistanceOnly.map(event => event.category))] 
+    
+    printStatistics(datos, eventStatistics)
+
+    objetoCategoria(eventsEstiamteCategory,eventsEstiamteOnly)
+    printUpcomingStatistics(newArrayComing, upcomingStatistics)
+    
+    
+    objetoCategoriaPast(eventsAssistanceCategory,eventsAssistanceOnly)
+    printPastStatistics(newArrayPast, pastStatistics)
+ 
+   
 })
-// .catch(problems => eventStatistics.innerHTML = `<h1>We are having technical problems, try again later. 🛠</h1>`)
+.catch(problems => headerError.innerHTML = `<h1>We are having technical problems, try again later. 🛠</h1>`)
+
+
+
+/////FUNCTIONS TABLE EVENTS STATISTICS/////
 
 
 function highestAttendance(event){
-    let high = event.map(element => element.assistance).filter(element => {
-        let numero = parseInt(element)
-        return numero
-    }).sort((a,b) => b - a)
-    return parseInt(high)
+    let high = event.filter(e => e.assistance).sort( (a,b) => b.assistance - a.assistance ).map(e => e.name).slice(0,1)
+    return high
 }
 
 function lowestAttendance(event){
-    let lowest = event.map(element => element.assistance).filter(element => {
-        let numero = parseInt(element)
-        return numero
-    }).sort((a,b) => a - b)
-    return (parseInt(lowest))
+    let lowest = event.filter(e => e.assistance).sort( (a,b) => b.assistance - a.assistance ).map(e => e.name).slice(-1)
+    return lowest
 }
 
 function largerCapacity(event){
-    let larger = event.map(element => element.capacity).filter(element => {
-        let numero = parseInt(element)
-        return numero
-    }).sort((a,b) => b - a)
-    return parseInt(larger)
+    let larger = event.filter(e => e.capacity).sort( (a,b) => b.capacity - a.capacity ).map(e => e.name).slice(0,1)
+    return larger
     
 }
 
@@ -64,61 +66,62 @@ function printStatistics(event, table){
     return table.innerHTML = template 
 }
 
+/////FUNCTIONS TABLE UPCOMING/////
 
-
-
-function revenuesEstimate(events){
-    let eventsEstimate = events.map(event => {
-        
-        return {
-            category: event.category,
-            revenues: event.price * event.estimate,
-            estimate: event.estimate
-
-        }
+function objetoCategoria(category, eventsFilter){
+    category.map(evento=>{
+        return newArrayComing.push({
+            name: evento,
+            revenue: eventsFilter.filter(e => e.category == evento).map(e => e.price).reduce((acc,iter) => acc+=iter), 
+            estimate: eventsFilter.filter(e => e.category == evento).map(e => parseInt(e.estimate)).reduce((acc,iter) => acc+=iter),
+            capacity : eventsFilter.filter(e => e.category == evento).map(e => parseInt(e.capacity)).reduce((acc,iter) => acc+=iter)  
+        })
     })
-    return eventsEstimate
 }
-
-function revenuesEstimateee(events){
-    let eventsEstimate = events.map(event => {
-        if (event.category === events.category){
-            return {
-                revenues: event.price * event.estimate,
-            }
-            
-        } 
-    })
-    return eventsEstimate
-}
-
-
-
-function revenues(event, category) {
-    let revenuesCategory = event.filter(events => category.includes(event.category))
-    return revenuesCategory
-}
-
-
-
-// if (evento.category == evento.category)
-
-
-
 
 
 function printUpcomingStatistics(event, table){
     let template = ``
-    let categories
     event.forEach(element => {
         template += `
             <tr>
-                <td>${element}</td>
+                <td>${element.name}</td>
+                <td>$${Math.round(element.revenue*element.estimate)}</td>
+                <td>${Math.round(element.estimate*100/element.capacity)}%</td>
             </tr>
         `
     });
     return table.innerHTML = template
 }
+
+/////FUNCTIONS TABLE PAST/////
+
+
+function objetoCategoriaPast(category, eventsFilter){
+    category.map(evento=>{
+        return newArrayPast.push({
+            name: evento,
+            revenue: eventsFilter.filter(e => e.category == evento).map(e => e.price).reduce((acc,iter) => acc+=iter), 
+            assistance: eventsFilter.filter(e => e.category == evento).map(e => parseInt(e.assistance)).reduce((acc,iter) => acc+=iter),
+            capacity : eventsFilter.filter(e => e.category == evento).map(e => parseInt(e.capacity)).reduce((acc,iter) => acc+=iter)  
+        })
+    })
+}
+
+function printPastStatistics(event, table){
+    let template = ``
+    event.forEach(element => {
+        template += `
+            <tr>
+                <td>${element.name}</td>
+                <td>$${Math.round(element.revenue*element.assistance)}</td>
+                <td>${Math.round(element.assistance*100/element.capacity)}%</td>
+            </tr>
+        `
+    });
+    return table.innerHTML = template
+}
+
 
 
 
