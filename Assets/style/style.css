@@ -49,9 +49,7 @@ select:hover {
 }
 
 
-.padding-left-container {
-    margin-left: 6rem !important;
-}
+
 
 .padding-left {
     padding-left: 3rem;
@@ -90,6 +88,11 @@ nav {
 
 #index-category {
     z-index: 500;
+}
+
+#category-container {
+    z-index: 500;
+    width: 100%;
 }
 
 header {

@@ -7,7 +7,7 @@ let categoriesOnly = new Set(datos.map(category => category.category))
 
 function createCards(event){
     let card = document.createElement("div")
-    card.classList.add('card', 'mb-3', 'mb-md-0')
+    card.classList.add('card', 'mb-3', 'mb-md-0', 'mt-5')
     card.innerHTML = `
     <img src="${event.image}" class="card-img-top" alt="this is an ${event.name}">
     <div class="card-body d-flex flex-column gap-3">
