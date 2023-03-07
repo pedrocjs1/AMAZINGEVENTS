@@ -20,8 +20,10 @@ nav {
     padding: 0rem !important;
 }
 
+
 .card img {
     max-height: 8rem;
+    min-height: 8rem;
     max-width: 20rem;
     
 }
@@ -86,18 +88,57 @@ nav {
     min-height: 10vh;
 }
 
+#index-category {
+    z-index: 500;
+}
 
 header {
-    min-height: 10vh;
+    position: relative;
+    width: 100% !important;
+    height: 40vh;
+    overflow: hidden;
+    background: #000;
+}
+
+video::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0px 1px;
+    z-index: -1;
+}
+video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100%;
+    object-fit: cover;
+    object-position: center calc(70%);
+
+}
+
+
+header {
+    min-height: 10vh !important;
+}
+
+h1 {
+    z-index: 999;
 }
 
 main {
-    min-height: 60vh;
+    min-height: 50vh;
 }
 
 footer {
     min-height: 20vh;
 }
+
+
 
 
 .form-control{
@@ -175,8 +216,11 @@ footer {
     border-radius: 1rem;
 }
 .color-title h1, h5 {
-    background-color: #eadeda;
+    background-color: none;
     color: #d90368;
+}
+label {
+    color: #eadeda;
 }
 
 .color-title {
@@ -218,14 +262,15 @@ footer {
 }
 
 .nav-search {
-    background-color: #eadeda;
+    background-color: none;
     color: #d90368;
-    border-radius: 1rem;
+    
 }
 
 .nav-search:hover {
     background-color: #2e294e;
     transition: 1s;
+    border-radius: 1rem;
 }
 
 .footer-hover:hover {

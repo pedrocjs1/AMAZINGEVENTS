@@ -1,6 +1,6 @@
 const datos = [{
     _id: 1,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Feriadecomidas7.jpg",
+    "image":"https://img.freepik.com/free-photo/group-young-people-dancing-together-party-with-neon-lights-good-music-crazy-college-party_482257-21923.jpg?w=900&t=st=1678206552~exp=1678207152~hmac=c2b47ee8173f5b1e49d47b0a896aecfc7c1b16a2a3e1db6e845c7203e6ad8fc9",
     "name":"Collectivities Party",
     "date":"2021-12-12",
     "description":"Enjoy your favourite dishes, from different countries, in a unique event for the whole family.",
@@ -12,7 +12,7 @@ const datos = [{
   },
   {
     _id: 2,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Feriadecomidas2.jpg",
+    "image":"http://res.heraldm.com/content/image/2020/12/17/20201217000145_0.jpg",
     "name":"Korean style",
     "date":"2022-08-12",
     "description":"Enjoy the best Korean dishes, with international chefs and awesome events.",
@@ -24,7 +24,7 @@ const datos = [{
   },
   {
     _id: 3,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Salidaalmuseo5.jpg",
+    "image":"http://static1.squarespace.com/static/595ec7a636e5d3078c603268/5a0f5b5a652dea11150533a3/5a0f5b5a8165f5f16ac9827b/1510955929507/IMG_3405.JPG?format=1500w",
     "name":"Jurassic Park",
     "date":"2021-11-02",
     "description":"Let's go meet the biggest dinosaurs in the paleontology museum.",
@@ -36,7 +36,7 @@ const datos = [{
   },
   {
     _id: 4,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Salidaalmuseo1.jpg",
+    "image":"https://img.freepik.com/free-photo/galleria-vittorio-emanuele-milan_181624-9069.jpg?w=740&t=st=1678206690~exp=1678207290~hmac=b5a5d43abef822fe72a96939de5ae5b164734e6f6bded13eb760473c0df5814c",
     "name":"Parisian Museum",
     "date":"2022-11-02",
     "description":"A unique tour in the city of lights, get to know one of the most iconic places.",
@@ -48,7 +48,7 @@ const datos = [{
   },
   {
     _id: 5,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Fiestadedisfraces2.jpg",
+    "image":"https://media.vandalsports.com/master/3-2021/202132122146_1.jpg",
     "name":"Comicon",
     "date":"2021-02-12",
     "description":"For comic lovers, all your favourite characters gathered in one place.",
@@ -60,7 +60,7 @@ const datos = [{
   },
   {
     _id: 6,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Fiestadedisfraces1.jpg",
+    "image":"https://assets3.thrillist.com/v1/image/3112446/1200x630/flatten;crop_down;webp=auto;jpeg_quality=70",
     "name":"Halloween Night",
     "date":"2022-02-12",
     "description":"Come with your scariest costume and win incredible prizes.",
@@ -72,7 +72,7 @@ const datos = [{
   },
   {
     _id: 7,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Conciertodemusica1.jpg",
+    "image":"https://www.jambase.com/wp-content/uploads/2022/09/metallica-helping-hands-concert-2022-1480x832.jpg",
     "name":"Metallica in concert",
     "date":"2022-01-22",
     "description":"The only concert of the most emblematic band in the world.",
@@ -84,7 +84,7 @@ const datos = [{
   },
   {
     _id: 8,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Conciertodemusica2.jpg",
+    "image":"https://static.ra.co/images/news/2023/eastern-electrics-202301.jpeg",
     "name":"Electronic Fest",
     "date":"2021-01-22",
     "description":"The best national and international DJs gathered in one place.",
@@ -96,7 +96,7 @@ const datos = [{
     },
   {
     _id: 9,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Maraton3.jpg",
+    "image":"https://raceforlife.cancerresearchuk.org/sites/default/files/styles/no_effects/public/race-for-life10k_0.jpg?itok=8CxEzUKN",
     "name":"10K for life",
     "date":"2021-03-01",
     "description":"Come and exercise, improve your health and lifestyle.",
@@ -108,7 +108,7 @@ const datos = [{
   },
   {
     _id: 10,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Maraton1.jpg",
+    "image":"https://www.boilermaker.com/wp-content/uploads/2022/11/MekonnenMens-Open-Champion-scaled.jpg",
     "name":"15K NY",
     "date":"2022-03-01",
     "description":"We'll be raising funds for hospitals and medical care in this unique event held in The Big Apple.",
@@ -120,7 +120,7 @@ const datos = [{
     },
   {
     _id: 11,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Libros7.jpg",
+    "image":"https://www.follettcommunity.com/servlet/rtaImage?eid=ka02J000000HnWt&feoid=00N5000000ATqVL&refid=0EM2J000002LSTd",
     "name":"School's book fair",
     "date":"2022-10-15",
     "description":"Bring your unused school book and take the one you need.",
@@ -132,7 +132,7 @@ const datos = [{
   },
   {
     _id: 12,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Libros3.jpg",
+    "image":"https://images.squarespace-cdn.com/content/v1/6200e70d480a8007a1580885/d00271a6-fc59-4864-9745-c93dd3841c4f/Lamb+Class_21.jpg",
     "name":"Just for your kitchen",
     "date":"2021-11-09",
     "description":"If you're a gastronomy lover come get the cookbook that best suits your taste and your family's.",
@@ -144,7 +144,7 @@ const datos = [{
   },
   {
     _id: 13,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Cine3.jpg",
+    "image":"https://cloudfront-us-east-1.images.arcpublishing.com/infobae/K6SXSFXCARHGDMS6PVGFKPDBSI.jpg",
     "name":"Batman",
     "date":"2021-3-11",
     "description":"Come see Batman fight crime in Gotham City.",
@@ -156,7 +156,7 @@ const datos = [{
   },
   {
     _id: 14,
-    "image":"https://amazingeventsapi.herokuapp.com/api/img/Cine7.jpg",
+    "image":"https://i.blogs.es/18d779/apps.21121.69399725068812250.f5beeed7-d61b-4b1c-a742-2f5823b7bc00/1366_2000.jpeg",
     "name":"Avengers",
     "date":"2022-10-15",
     "description":"Marvel's Avengers Premier in 3d, the start of an epic saga with your favourite superheroes.",
